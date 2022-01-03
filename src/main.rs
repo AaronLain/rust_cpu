@@ -22,8 +22,10 @@ impl CPU {
 
 
     fn run(&mut self) {
-    //loop {
+    loop {
         let opcode = self.read_opcode();
+        self.program_counter += 2;
+
 
         let c = ((opcode & 0xF000) >> 12) as u8;
         let x = ((opcode & 0x0F00) >> 8) as u8;
@@ -31,10 +33,11 @@ impl CPU {
         let d = ((opcode & 0x000F) >> 0) as u8;
 
         match (c, x, y, d) {
-        (0x8, _, _, 0x4) => self.add_xy(x, y),
-        _ => todo!("opcode {:04x}", opcode),
+            (0, 0, 0, 0)     => { return; },
+            (0x8, _, _, 0x4) => self.add_xy(x, y),
+            _                => todo!("opcode {:04x}", opcode),
         }
-    //}
+        }
     }
     
 
