@@ -1,8 +1,11 @@
+// Hyper-minimal fake CPU
 struct CPU {
-    current_operation: u16,
-    registers: [u8; 2],
+    program_counter: usize,
+    memory: [u8; 0x1000],
+    registers: [u8; 16],
 }
 
+// What the fake CPU can actually do
 impl CPU {
     fn read_opcode(&self) -> u16 {
         self.current_operation
