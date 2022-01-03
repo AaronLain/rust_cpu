@@ -12,7 +12,7 @@ impl CPU {
     fn read_opcode(&self) -> u16 {
         let pc = self.program_counter;
         let op_byte1 = self.memory[pc] as u16;
-        let op_byte2 = self.memory[p + 1] as u16;
+        let op_byte2 = self.memory[pc + 1] as u16;
 
         // bitwise operation shifts op_byte1 left 8 bits
         // to make room for the op_byte2 which is then combined unless
@@ -44,7 +44,7 @@ impl CPU {
         let arg1 = self.registers[x as usize];
         let arg2 = self.registers[y as usize];
 
-        let (val, overflow) = ar1.overflowing_add(arg2);
+        let (val, overflow) = arg1.overflowing_add(arg2);
         self.registers[x as usize] = val;
         
         if overflow {
@@ -66,7 +66,7 @@ fn main() {
     cpu.registers[2] = 10;
     cpu.registers[3] = 10;
     
-    let mem = mut& cpu.memory;
+    let mem = &mut cpu.memory;
     mem[0] = 0x80; mem[1] = 0x14;
     mem[2] = 0x80; mem[3] = 0x24;
     mem[4] = 0x80; mem[5] = 0x34;
