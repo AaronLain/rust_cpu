@@ -7,8 +7,17 @@ struct CPU {
 
 // What the fake CPU can actually do
 impl CPU {
+
+    // this combines two u8's to form a single u16
     fn read_opcode(&self) -> u16 {
-        self.current_operation
+        let pc = self.program_counter;
+        let op_byte1 = self.memory[pc] as u16;
+        let op_byte2 = self.memory[p + 1] as u16;
+
+        // bitwise operation shifts op_byte1 left 8 bits
+        // to make room for the op_byte2 which is then combined unless
+        // op_byte2 contains only zeroes
+        op_byte1 << 8 | op_byte2
     }
 
 
