@@ -17,6 +17,7 @@ impl CPU {
         // bitwise operation shifts op_byte1 left 8 bits
         // to make room for the op_byte2 which is then combined unless
         // op_byte2 contains only zeroes
+        // result of the expression below is returned
         op_byte1 << 8 | op_byte2
     }
 
