@@ -3,6 +3,8 @@ struct CPU {
     program_counter: usize,
     memory: [u8; 0x1000],
     registers: [u8; 16],
+    stack: [u16; 16],
+    stack_pointer: usize,
 }
 
 // What the fake CPU can actually do
