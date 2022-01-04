@@ -94,17 +94,22 @@ impl CPU {
     }
 }
 fn main() {
+    // take the arguments and convert to a string.
     let args: Vec<String> = env::args().collect();
     let args_ = &args[1];
     let args_x: String = args_.to_owned() + " " + &args[2];
    
     println!("string: {:?}", &args_x);
-
+    // convert that string into bytes
     let byte_args = &args_x.into_bytes();
-
+    
     println!("bytes: {:?}", &byte_args);
     print_type_of(&byte_args);
+    // need to split this at 0x20 (space)
+    // to form 2 args for register values
 
+
+    // creates our CPU
     let mut cpu = CPU {
         stack: [0; 16],
         stack_pointer: 0,
@@ -113,8 +118,8 @@ fn main() {
         registers: [0; 16],
     };
 
-    cpu.registers[0] = 5;
-    cpu.registers[1] = 10;
+    cpu.registers[0] = 5;  //TODO: arg1
+    cpu.registers[1] = 10; //TODO: arg2
     
     let mem = &mut cpu.memory;
 
