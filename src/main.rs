@@ -43,6 +43,8 @@ impl CPU {
         
         let nnn = opcode & 0x0FFF;
 
+        //each byte represented in parenthesis with opcodes in their proper places
+        //Todo: add subtraction, goto, bit ops, assignment 
         match (c, x, y, d) {
             (0, 0, 0, 0)     => { return; },
             (0, 0, 0xE, 0xE) => self.ret(),
