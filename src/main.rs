@@ -1,3 +1,5 @@
+use std::env;
+
 // Hyper-minimal fake CPU
 struct CPU {
     program_counter: usize,
@@ -88,6 +90,16 @@ impl CPU {
     }
 }
 fn main() {
+    let args: Vec<String> = env::args().collect();
+    let args_ = &args[1];
+    let args_x: String = args_.to_owned() + " " + &args[2];
+   
+    println!("string: {:?}", &args_x);
+
+    let byte_args = &args_x.into_bytes();
+
+    println!("bytes: {:?}", &byte_args);
+
     let mut cpu = CPU {
         stack: [0; 16],
         stack_pointer: 0,
